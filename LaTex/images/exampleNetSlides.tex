@@ -1,0 +1,74 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\newcommand{\nonempty}{\textsc{\texttt{ne}}}
+\newcommand{\tos}{\textsc{\texttt{t}}}
+
+\begin{document}
+	
+	\tikzset{%
+		neuron/.style={
+			circle,
+			draw,
+			minimum size=1.3cm
+		}
+	}
+	
+	\begin{tikzpicture}[node distance=1.5cm]
+		\node[align=center](l2){Layer 2};
+		\node[neuron,below of=l2,yshift=.2cm](l21){$\sigma_1$};
+		\node[neuron,below of=l21](l22){$\sigma_2$};
+		\node[neuron,below of=l22,yshift=-.3cm](l23){$\sigma_3$};
+		\node[neuron,below of=l23](l24){$\sigma_4$};
+		\node[neuron,below of=l24,yshift=-.3cm](l25){$\sigma_5$};
+		\node[neuron,below of=l25,yshift=-.3cm](l26){$\sigma_6$};
+		\node[neuron,below of=l26](l27){$\sigma_7$};
+		\node[neuron,below of=l27](l28){$\sigma_8$};
+		\node[neuron,below of=l28](l29){$\sigma_9$};
+		\node[neuron,below of=l29](l210){$\sigma_{10}$};
+		\node[neuron,below of=l210,yshift=-.3cm](l211){$\sigma_{11}$};
+		\node[neuron,below of=l211](l212){$\sigma_{12}$};
+		\node[neuron,below of=l212](l213){$\sigma_{13}$};
+		\node[neuron,below of=l213](l214){$\sigma_{14}$};
+		\node[neuron,below of=l214](l215){$\sigma_{15}$};
+		
+		\node[align=center,left of=l2,xshift=-8cm](l1){Layer 1};
+		\node[neuron,left of=l24,xshift=-8cm,yshift=-.3cm](l11){$x_0$};
+		\node[neuron,below of=l11](l12){$x_1$};
+		\node[neuron,below of=l12,yshift=-.3cm](l13){$q_1$};
+		\node[neuron,below of=l13](l14){$q_2$};
+		\node[neuron,below of=l14,yshift=-.3cm](l15){$\tos(q_1)$};
+		\node[neuron,below of=l15](l16){$\tos(q_2)$};
+		\node[neuron,below of=l16,yshift=-.3cm](l17){$\nonempty(q_1)$};
+		\node[neuron,below of=l17](l18){$\nonempty(q_2)$};
+		
+		\node[align=center, left of=l1,xshift=-3.5cm](li){Input layer};
+		\node[neuron, below of=li, yshift=-7.3cm](li1){$x_0$};
+		\node[neuron,below of=li1](li2){$x_1$};
+		\node[neuron,below of=li2](li3){$x_\mathrm{h}$};
+		\node[neuron,below of=li3,yshift=-.3cm](li4){$q_1$};
+		\node[neuron,below of=li4](li5){$q_2$};
+		
+		\node[align=center, right of=li,xshift=21cm](l3){Layer 3 (output)};
+		\node[neuron, right of=li1, xshift=21cm](l31){$x_0^+$};
+		\node[neuron,below of=l31](l32){$x_1^+$};
+		\node[neuron,below of=l32](l33){$x_\mathrm{h}^+$};
+		\node[neuron,below of=l33,yshift=-.3cm](l34){$q_1^+$};
+		\node[neuron,below of=l34](l35){$q_2^+$};
+		
+		\foreach \i in {1,...,5}
+			\foreach \j in {1,...,8}
+				\draw [->] (li\i) -- (l1\j);
+				
+		\foreach \i in {1,...,8}
+			\foreach \j in {1,...,15}
+				\draw [->] (l1\i) -- (l2\j);
+				
+		\foreach \i in {1,...,15}
+			\foreach \j in {1,...,5}
+				\draw [->] (l2\i) -- (l3\j);
+	\end{tikzpicture}
+	
+\end{document}
