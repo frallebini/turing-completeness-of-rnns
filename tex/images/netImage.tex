@@ -1,0 +1,96 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\begin{document}
+	
+	\tikzset{%
+		neuron/.style={
+			circle,
+			draw,
+			minimum size=1.1cm
+		},
+		missing/.style={
+			draw=none, 
+			execute at begin node=$\vdots$
+		},
+	}
+	
+	\begin{tikzpicture}[node distance=1.3cm]
+		\node[neuron](g20){$\sigma_{01}$};
+		\node[missing,below of=g20,yshift=.5cm](g2m1){};
+		\node[neuron,below of=g2m1,yshift=.3cm](g21){$\sigma_{09}$};
+		\node[neuron,below of=g21](g22){$\sigma_{11}$};
+		\node[missing,below of=g22,yshift=.5cm](g2m2){};
+		\node[neuron,below of=g2m2,yshift=.3cm](g23){$\sigma_{19}$};
+		\node[missing,below of=g23,yshift=.5cm](g2m3){};
+		\node[neuron,below of=g2m3,yshift=.3cm](g24){$\sigma_{s1}$};	
+		\node[missing,below of=g24,yshift=.5cm](g2m4){};
+		\node[neuron,below of=g2m4,yshift=.3cm](g25){$\sigma_{s9}$};
+		\node[neuron,below of=g25,yshift=-.3cm](g26){$q_1$};
+		\node[neuron,below of=g26](g27){$q_2$};
+		\node[neuron,below of=g27,yshift=-.3cm](g28){$\zeta[q_1]$};
+		\node[neuron,below of=g28](g29){$\zeta[q_2]$};
+		\node[align=center,above of=g20,yshift=-.2cm](g2){$g_2$};
+		
+		\node[neuron,left of=g2m1,xshift=-5.5cm,yshift=-.2cm](g10){$x_0$};
+		\node[neuron,below of=g10](g11){$x_1$};
+		\node[missing,below of=g11,yshift=.5cm](g1m1){};	
+		\node[neuron,below of=g1m1,yshift=.3cm](g12){$x_s$};
+		\node[neuron,below of=g12,yshift=-.3cm](g13){$q_1$};
+		\node[neuron,below of=g13](g14){$q_2$};
+		\node[neuron,below of=g14,yshift=-.3cm](g15){$\zeta[q_1]$};
+		\node[neuron,below of=g15](g16){$\zeta[q_2]$};
+		\node[neuron,below of=g16,yshift=-.3cm](g17){$\tau[q_1]$};
+		\node[neuron,below of=g17](g18){$\tau[q_2]$};
+		\node[align=center,left of=g2,xshift=-5.5cm](g1){$g_1$};
+		
+		\node[neuron,left of=g1m1,xshift=-3.5cm,yshift=-.6cm](gi0){$x_1$};
+		\node[neuron,below of=gi0](gi1){$x_2$};
+		\node[missing,below of=gi1,yshift=.5cm](gim1){};	
+		\node[neuron,below of=gim1,yshift=.3cm](gi2){$x_s$};
+		\node[neuron,below of=gi2,yshift=-.3cm](gi3){$q_1$};
+		\node[neuron,below of=gi3](gi4){$q_2$};
+		\node[align=center,left of=g1,xshift=-3.5cm](gi){Input};
+		
+		\node[neuron,right of=g20,xshift=6cm,yshift=-.1cm](g30){$x_1^+$};
+		\node[neuron,below of=g30](g31){$x_2^+$};
+		\node[missing,below of=g31,yshift=.5cm](g3m1){};	
+		\node[neuron,below of=g3m1,yshift=.3cm](g32){$x_s^+$};
+		\node[neuron,below of=g32,yshift=-.3cm](g33){$q_{11}^+$};
+		\node[neuron,below of=g33](g34){$q_{12}^+$};
+		\node[neuron,below of=g34](g35){$q_{13}^+$};
+		\node[neuron,below of=g35](g36){$q_{14}^+$};	
+		\node[neuron,below of=g36,yshift=-.3cm](g37){$q_{21}^+$};
+		\node[neuron,below of=g37](g38){$q_{22}^+$};
+		\node[neuron,below of=g38](g39){$q_{23}^+$};
+		\node[neuron,below of=g39](g310){$q_{24}^+$};
+		\node[align=center,right of=g2,xshift=6cm](g3){$g_3$};
+		
+		\node[neuron,right of=gi0,xshift=23.5cm](g40){$x_1^+$};
+		\node[neuron,below of=g40](g41){$x_2^+$};
+		\node[missing,below of=g41,yshift=.5cm](g4m1){};	
+		\node[neuron,below of=g4m1,yshift=.3cm](g42){$x_s^+$};
+		\node[neuron,below of=g42,yshift=-.3cm](g43){$q_1^+$};
+		\node[neuron,below of=g43](g44){$q_2^+$};
+		\node[align=center,right of=gi,xshift=23.5cm](g4){$g_4$};
+		
+		\foreach \i in {0,...,4}
+			\foreach \j in {0,...,8}
+				\draw [->] (gi\i) -- (g1\j);
+		
+		\foreach \i in {0,...,8}
+			\foreach \j in {0,...,9}
+				\draw [->] (g1\i) -- (g2\j);
+		
+		\foreach \i in {0,...,9}
+			\foreach \j in {0,...,10}
+				\draw [->] (g2\i) -- (g3\j);
+				
+		\foreach \i in {0,...,10}
+			\foreach \j in {0,...,4}
+				\draw [->] (g3\i) -- (g4\j);
+	\end{tikzpicture}
+	
+\end{document}

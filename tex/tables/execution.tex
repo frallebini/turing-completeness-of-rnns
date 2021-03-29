@@ -1,0 +1,19 @@
+\begin{table}[t]
+	\centering
+	\begin{tabular}{|c| c c c |}
+		\hline 
+		Time & State & Stack 1 & Stack 2 \\
+		\hline
+		0 & $s_0$ & 101 & $\varepsilon$ \\
+		1 & $s_0$ & 01 & 1 \\
+		2 & $s_0$ & 1 & 1 \\
+		3 & $s_0$ & $\varepsilon$ & 11 \\
+		4 & $s_1$ & $\varepsilon$ & 11 \\
+		5 & $s_1$ & 1 & 1 \\
+		6 & $s_1$ & 11 & $\varepsilon$ \\
+		7 & $s_\h$ & 11 & $\varepsilon$ \\
+		\hline
+	\end{tabular}
+	\caption{execution of the double-stack PDA in figure \ref{fig:PDA} with input 101}
+	\label{tab:execution}
+\end{table}
