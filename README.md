@@ -1,4 +1,4 @@
 # On the Turing Completeness of Recurrent Neural Networks
-A formal proof of how to build a recurrent neural network that simulates an arbitrary Turing machine, with some code implementing a specific case.
+A formal proof of how to build a Recurrent Neural Network that simulates an arbitrary Turing Machine, with some code implementing a specific case.
 
-![](LaTex/images/exampleNet.png "RNN computing unary addition")
+![](tex/images/exampleNet.png "RNN computing unary addition")
